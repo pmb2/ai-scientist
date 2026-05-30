@@ -157,8 +157,8 @@ def generate_ideas(
     
     Args:
         experiment: Template name (e.g., 'nanoGPT_lite', 'grokking', '2d_diffusion')
-        model: Model identifier — prefix with 'openrouter/' for OpenRouter models
-               (e.g., 'openrouter/google/gemma-4-31b-it:free')
+        model: Model identifier — prefix with 'opencode-go/' for OpenCode Go models
+               (e.g., 'opencode-go/deepseek-v4-flash')
         num_ideas: Number of ideas to generate (default: 5)
         num_reflections: Number of reflection rounds per idea (default: 3)
         skip_novelty_check: Skip Semantic Scholar novelty check (default: False)
@@ -398,7 +398,7 @@ def prepare_baseline(experiment: str, gpu_id: str = "0") -> str:
 
 
 @mcp.tool()
-def review_paper(pdf_path: str, model: str = "openrouter/nousresearch/hermes-3-llama-3.1-405b:free") -> str:
+def review_paper(pdf_path: str, model: str = "opencode-go/deepseek-v4-flash") -> str:
     """
     Review a generated paper PDF using an LLM.
     
@@ -422,7 +422,7 @@ import openai
 paper_txt = load_paper(r'{pdf}')
 client = openai.OpenAI(
     api_key=os.environ.get('OPENROUTER_API_KEY', os.environ.get('OPENAI_API_KEY', '')),
-    base_url='https://openrouter.ai/api/v1',
+    base_url='https://opencode.ai/zen/go/v1',
 )
 review = perform_review(
     paper_txt,

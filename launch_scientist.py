@@ -29,7 +29,7 @@ def _aider_model_name(model):
     elif model == "deepseek-reasoner":
         return "deepseek/deepseek-reasoner"
     elif model == "llama3.1-405b":
-        return "openrouter/meta-llama/llama-3.1-405b-instruct"
+        return "opencode-go/deepseek-v4-flash"
     elif _is_openrouter_model(model):
         # Strip openrouter/ prefix if present, Aider expects openrouter/<model>
         clean = model.replace("openrouter/", "").replace("openrouter:", "")
@@ -269,10 +269,10 @@ def do_idea(
                 paper_text = load_paper(f"{folder_name}/{idea['Name']}.pdf")
                 review = perform_review(
                     paper_text,
-                    model="openrouter/google/gemma-4-31b-it:free",
+                    model="opencode-go/deepseek-v4-flash",
                     client=openai.OpenAI(
                         api_key=os.environ.get("OPENROUTER_API_KEY", os.environ.get("OPENAI_API_KEY", "")),
-                        base_url="https://openrouter.ai/api/v1",
+                        base_url="https://opencode.ai/zen/go/v1",
                     ),
                     num_reflections=5,
                     num_fs_examples=1,
@@ -298,10 +298,10 @@ def do_idea(
                 paper_text = load_paper(f"{folder_name}/{idea['Name']}_improved.pdf")
                 review = perform_review(
                     paper_text,
-                    model="openrouter/google/gemma-4-31b-it:free",
+                    model="opencode-go/deepseek-v4-flash",
                     client=openai.OpenAI(
                         api_key=os.environ.get("OPENROUTER_API_KEY", os.environ.get("OPENAI_API_KEY", "")),
-                        base_url="https://openrouter.ai/api/v1",
+                        base_url="https://opencode.ai/zen/go/v1",
                     ),
                     num_reflections=5,
                     num_fs_examples=1,
